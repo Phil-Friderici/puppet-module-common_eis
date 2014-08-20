@@ -1,0 +1,8 @@
+name    'opencsw'
+version '0.1.0'
+source 'https://github.com/juliengk/puppet-module-common_eis'
+author 'Julien K'
+license 'Apache License, Version 2.0'
+summary 'Common module to be applied to all nodes'
+description 'Provide ability to include modules that are common to all nodes.'
+project_page 'https://github.com/juliengk/puppet-module-common_eis'
