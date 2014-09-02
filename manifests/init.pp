@@ -1,7 +1,5 @@
 # == Class: common_eis
 #
-# This class is applied to *ALL* nodes
-#
 class common_eis (
   $enable_afs        = false,
   $enable_autofs     = false,
@@ -36,9 +34,9 @@ class common_eis (
   }
 
   # validate type and convert string to boolean if necessary
-  $enable_beuser_type = type($enable_dnsclient)
+  $enable_beuser_type = type($enable_beuser)
   if $enable_beuser_type == 'string' {
-    $beuser_enabled = str2bool($enable_dnsclient)
+    $beuser_enabled = str2bool($enable_beuser)
   } else {
     $beuser_enabled = $enable_beuser
   }
