@@ -1,14 +1,15 @@
 # == Class: common_eis
 #
 class common_eis (
-  $enable_afs        = false,
-  $enable_autofs     = false,
-  $enable_beuser     = false,
-  $enable_customrepo = false,
-  $enable_nrpe       = false,
-  $enable_nscd       = false,
-  $enable_sudo       = false,
-  $enable_vas        = false,
+  $enable_afs            = false,
+  $enable_autofs         = false,
+  $enable_beuser         = false,
+  $enable_customrepo     = false,
+  $enable_logaggregation = false,
+  $enable_nrpe           = false,
+  $enable_nscd           = false,
+  $enable_sudo           = false,
+  $enable_vas            = false,
 ) {
 
   # validate type and convert string to boolean if necessary
@@ -53,6 +54,17 @@ class common_eis (
   }
   if $customrepo_enabled == true {
     include eis_customrepo
+  }
+
+  # validate type and convert string to boolean if necessary
+  $enable_logaggregation_type = type($enable_logaggregation)
+  if $enable_logaggregation_type == 'string' {
+    $logaggregation_enabled = str2bool($enable_logaggregation)
+  } else {
+    $logaggregation_enabled = $enable_logaggregation
+  }
+  if $logaggregation_enabled == true {
+    include logaggregation
   }
 
   # validate type and convert string to boolean if necessary
